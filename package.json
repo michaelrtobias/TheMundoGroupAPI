@@ -1,0 +1,19 @@
+{
+  "name": "themundogroupapi",
+  "version": "1.0.0",
+  "description": "API Gateway for The Mundo Group",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaelrtobias/TheMundoGroupAPI.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/michaelrtobias/TheMundoGroupAPI/issues"
+  },
+  "homepage": "https://github.com/michaelrtobias/TheMundoGroupAPI#readme"
+}

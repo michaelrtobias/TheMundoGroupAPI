@@ -105,3 +105,9 @@ dist
 
 
 .DS_Store
+
+.debug
+
+.vscode
+
+Archive.zip

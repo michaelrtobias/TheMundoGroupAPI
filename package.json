@@ -4,7 +4,8 @@
   "description": "API Gateway for The Mundo Group",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "debug-invoke": "node --nolazy .debug/invoke.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,13 @@
   "bugs": {
     "url": "https://github.com/michaelrtobias/TheMundoGroupAPI/issues"
   },
-  "homepage": "https://github.com/michaelrtobias/TheMundoGroupAPI#readme"
+  "homepage": "https://github.com/michaelrtobias/TheMundoGroupAPI#readme",
+  "dependencies": {
+    "aws-sdk": "^2.899.0",
+    "babel-cli": "^6.26.0",
+    "dotenv": "^8.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.0"
+  }
 }

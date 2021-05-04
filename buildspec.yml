@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 10
+    commands:
+      - echo "building"
+  pre_build:
+    commands:
+      - npm install
+      - echo "insatlled npm package"
+  build:
+    commands:
+      - echo "zipping the application"
+      - zip -r lambda.zip .

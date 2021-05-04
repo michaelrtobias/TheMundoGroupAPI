@@ -1,4 +1,6 @@
 const LeadsTable = require("../../db/LeadsTable");
+const AWS = require("aws-sdk");
+const dotenv = require("dotenv").config();
 
 class Wishlist {
   static routes = {
@@ -83,9 +85,28 @@ class Wishlist {
     const result = await this.leads.create(params);
     return result;
   }
+
   async uploadImage() {
-    console.log("uploadImage was run");
-    return 3;
+    // const image = new Images();
+    // const result = await image.uploadImage(this.body);
+    const S3_Bucket = process.env.BUCKET;
+    const body = this.body;
+    const s3 = new AWS.S3();
+    const fileName = body.fileName;
+    const fileType = body.fileType;
+    const s3Params = {
+      Bucket: S3_Bucket,
+      Key: fileName,
+      Expires: 500,
+      ContentType: fileType,
+      ACL: "public-read",
+    };
+
+    const imageURL = await s3.getSignedUrl("putObject", s3Params);
+    return {
+      signedRequest: imageURL,
+      url: `https://${S3_Bucket}.s3.amazonaws.com/${fileName}`,
+    };
   }
 }
 module.exports = Wishlist;

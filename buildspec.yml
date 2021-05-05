@@ -8,13 +8,9 @@ phases:
       - echo "building"
   pre_build:
     commands:
-      - npm install
+      - npm install --no-progress --silent
       - echo "insatlled npm packages"
   build:
     commands:
       - echo "zipping the application"
       - zip -r lambda.zip .
-artifacts:
-  files:
-    - "TheMundoGroupAPI/lambda.zip"
-  name: mundogroup-$(date +%Y-%m-%d)

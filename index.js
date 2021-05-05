@@ -1,7 +1,6 @@
 const Handler = require("./src/TheMundoGroupAPI");
 
 exports.handler = async (event, context) => {
-  console.log("hello world!");
   console.log(event);
   const handler = new Handler(event);
   const result = await handler.run();

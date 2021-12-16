@@ -83,30 +83,40 @@ class Wishlist {
       },
     };
     const result = await this.leads.create(params);
+    console.log(result);
+    console.log("params", params);
     return result;
   }
 
   async uploadImage() {
-    // const image = new Images();
-    // const result = await image.uploadImage(this.body);
-    const S3_Bucket = process.env.BUCKET;
-    const body = this.body;
-    const s3 = new AWS.S3();
-    const fileName = body.fileName;
-    const fileType = body.fileType;
-    const s3Params = {
-      Bucket: S3_Bucket,
-      Key: fileName,
-      Expires: 500,
-      ContentType: fileType,
-      ACL: "public-read",
-    };
+    try {
+      const S3_Bucket = process.env.BUCKET;
+      const body = this.body;
+      const s3 = new AWS.S3();
+      const fileName = body.fileName;
+      const fileType = body.fileType;
+      const s3Params = {
+        Bucket: S3_Bucket,
+        Key: fileName,
+        Expires: 500,
+        ContentType: fileType,
+        ACL: "public-read",
+      };
 
-    const imageURL = await s3.getSignedUrl("putObject", s3Params);
-    return {
-      signedRequest: imageURL,
-      url: `https://${S3_Bucket}.s3.amazonaws.com/${fileName}`,
-    };
+      const imageURL = await s3.getSignedUrl("putObject", s3Params);
+      const result = {
+        signedRequest: imageURL,
+        url: `https://${S3_Bucket}.s3.amazonaws.com/${fileName}`,
+      };
+      console.log(result);
+      return result;
+    } catch (e) {
+      console.log(e.message);
+      return {
+        statusCode: 500,
+        body: JSON.stringify(e.message),
+      };
+    }
   }
 }
 module.exports = Wishlist;

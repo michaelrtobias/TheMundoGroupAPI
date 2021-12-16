@@ -22,6 +22,7 @@ class LeadsTable {
     let queryParams = params;
     queryParams["TableName"] = this.tableName;
     const query = await ddb.putItem(queryParams).promise();
+    console.log("Lead Created");
     const unmarshalledQuery = AWS.DynamoDB.Converter.unmarshall(query);
     return unmarshalledQuery;
   }
